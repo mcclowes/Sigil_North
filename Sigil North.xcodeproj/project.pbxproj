@@ -26,6 +26,7 @@
 		C41FDA4818E9CF6C00457AAD /* Ruins_P5-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C41FDA4718E9CF6C00457AAD /* Ruins_P5-hd.png */; };
 		C41FDA4A18E9DB9600457AAD /* Barracks_P5-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C41FDA4918E9DB9600457AAD /* Barracks_P5-hd.png */; };
 		C43B810C18FBE2580092F5C9 /* CCPanZoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43B810B18FBE2580092F5C9 /* CCPanZoomController.m */; };
+		C44AC30718FDD49600497D93 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C44AC30618FDD49600497D93 /* GDataXMLNode.m */; };
 		C4527D6318E8A15A0028DF04 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C4527D6218E8A15A0028DF04 /* GameLayer.m */; };
 		C460FDD118E1CEA600361182 /* heal_1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C460FDC918E1CEA600361182 /* heal_1-hd.png */; };
 		C460FDD218E1CEA600361182 /* heal_2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C460FDCA18E1CEA600361182 /* heal_2-hd.png */; };
@@ -410,6 +411,8 @@
 		C41FDA4918E9DB9600457AAD /* Barracks_P5-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Barracks_P5-hd.png"; path = "Assets/Buildings/Barracks_P5-hd.png"; sourceTree = "<group>"; };
 		C43B810A18FBE2580092F5C9 /* CCPanZoomController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPanZoomController.h; sourceTree = "<group>"; };
 		C43B810B18FBE2580092F5C9 /* CCPanZoomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPanZoomController.m; sourceTree = "<group>"; };
+		C44AC30518FDD49600497D93 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
+		C44AC30618FDD49600497D93 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		C4527D6118E8A15A0028DF04 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
 		C4527D6218E8A15A0028DF04 /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLayer.m; sourceTree = "<group>"; };
 		C460FDC918E1CEA600361182 /* heal_1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heal_1-hd.png"; sourceTree = "<group>"; };
@@ -978,6 +981,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C44AC30818FDD49A00497D93 /* XML Handling */ = {
+			isa = PBXGroup;
+			children = (
+				C44AC30518FDD49600497D93 /* GDataXMLNode.h */,
+				C44AC30618FDD49600497D93 /* GDataXMLNode.m */,
+			);
+			name = "XML Handling";
+			sourceTree = "<group>";
+		};
 		C495271B18E2006800924A21 /* Units */ = {
 			isa = PBXGroup;
 			children = (
@@ -1118,6 +1130,7 @@
 		C4CE2472188D664B00BE82B3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C44AC30818FDD49A00497D93 /* XML Handling */,
 				C4CE2488188D664B00BE82B3 /* iTunesArtwork */,
 				C4CE2487188D664B00BE82B3 /* Info.plist */,
 				C4CE2887188D75BD00BE82B3 /* cursor-hd.png */,
@@ -1860,7 +1873,7 @@
 		C4CE2452188D664B00BE82B3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "M F J C Clowes";
 			};
 			buildConfigurationList = C4CE2455188D664B00BE82B3 /* Build configuration list for PBXProject "Sigil North" */;
@@ -2225,6 +2238,7 @@
 				C4191AAB18E3719700EFD915 /* HUDLayer.m in Sources */,
 				C4CE251B188D664C00BE82B3 /* CCRenderTexture.m in Sources */,
 				C4CE24A3188D664B00BE82B3 /* CCActionInterval.m in Sources */,
+				C44AC30718FDD49600497D93 /* GDataXMLNode.m in Sources */,
 				C4CE2511188D664C00BE82B3 /* CCPhysicsDebugNode.m in Sources */,
 				C4CE284F188D67D700BE82B3 /* Unit_Assassin.m in Sources */,
 				C4CE2497188D664B00BE82B3 /* CCActionEase.m in Sources */,
@@ -2278,12 +2292,9 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
@@ -2312,12 +2323,9 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
 					"NS_BLOCK_ASSERTIONS=1",
@@ -2343,12 +2351,16 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sigil North/Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"Sigil North/libs/kazmath/include\"";
+				HEADER_SEARCH_PATHS = (
+					"\"Sigil North/libs/kazmath/include\"",
+					/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = "Sigil North/Resources/Info.plist";
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",
 					"-ObjC",
+					"-lxml2",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -2362,12 +2374,16 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sigil North/Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"Sigil North/libs/kazmath/include\"";
+				HEADER_SEARCH_PATHS = (
+					"\"Sigil North/libs/kazmath/include\"",
+					/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = "Sigil North/Resources/Info.plist";
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",
 					"-ObjC",
+					"-lxml2",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
