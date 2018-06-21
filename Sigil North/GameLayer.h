@@ -10,7 +10,6 @@
 #import "cocos2d.h"
 #import "MainGameLayer.h"
 #import "MainMenuLayer.h"
-#import "CCPanZoomController.h"
 
 @class TileData;
 @class Unit;
@@ -51,10 +50,6 @@
     CCMenu *buildingActionsMenu;
     CCSprite *contextMenuBack;
     
-    //Scrolling elements
-    CCPanZoomController *_controller;
-    int xOffset;
-    int yOffset;
 }
 #pragma mark Variables:
 //Game layers
@@ -89,12 +84,6 @@
 @property (nonatomic, assign) CCMenu *unitActionsMenu;
 @property (nonatomic, assign) CCMenu *buildingActionsMenu;
 @property (nonatomic, assign) CCSprite *contextMenuBack;
-
-//Scrolling
-@property (nonatomic, retain) CCPanZoomController *_controller;
-@property int xOffset;
-@property int yOffset;
-
 
 #pragma mark Methods:
 - (id)init;
@@ -150,8 +139,8 @@
 -(void)checkForMoreUnits;
 -(void)showEndGameMessageWithWinner:(int)winningPlayer;
 
-#pragma mark Scrolling
--(CCPanZoomController *) getController;
--(void) setXOffset:(int)xAxisOffset setYOffset:(int)yAxisOffset;
+#pragma mark Scrolling??
+- (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
 
 @end

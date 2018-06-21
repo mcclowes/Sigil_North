@@ -16,8 +16,6 @@
 
 #import "Building_Castle.h"
 
-#import "CCPanZoomController.h"
-
 extern int level;
 
 @implementation GameLayer
@@ -27,7 +25,6 @@ extern int level;
 @synthesize wins, mapWidth, mapHeight, mapScale, distance, lastGoodDistance;
 @synthesize levelMap, selectedUnit, selectedBuilding, bgLayer, objectLayer;
 @synthesize unitActionsMenu, buildingActionsMenu, contextMenuBack;
-@synthesize _controller, xOffset, yOffset;
 
 +(CCScene *) scene
 {
@@ -58,13 +55,6 @@ extern int level;
         [self loadBuildings:1];
         [self loadBuildings:2];
         [self loadBuildings:5];
-        
-        //Enable tile map scrolling
-        // _controller is declared in the @interface as an object of CCPanZoomController
-        CCPanZoomController *tempController = [[CCPanZoomController controllerWithNode:self] retain];
-        tempController.boundingRect = CGRectMake(0,0,1000,1000);
-        _controller = tempController;
-        [_controller enableWithTouchPriority:3 swallowsTouches:YES];
     }
     return self;
 }
@@ -75,8 +65,6 @@ extern int level;
     [p2Units release];
     [p1Buildings release];
     [p2Buildings release];
-    [_controller disable];
-    [_controller release];
     [super dealloc];
 }
 
@@ -196,21 +184,9 @@ extern int level;
 #pragma mark Handing Touches
 
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	NSLog(@"Got here at least1");
-    for (UITouch *touch in touches) {
-        NSLog(@"Got here at least");
+	for (UITouch *touch in touches) {
 		// Get the location of the touch
 		CGPoint location = [touch locationInView: [touch view]];
-        
-        NSLog(@"%d, %d", xOffset, yOffset);
-        NSLog(@"%f, %f", location.x, location.y);
-        
-        //adjust for scrolling offset
-        location.x = location.x - (xOffset);
-        location.y = location.y + (yOffset);
-        
-        NSLog(@"%f, %f", location.x, location.y);
-        
 		// Convert the touch location to OpenGL coordinates
 		location = [[CCDirector sharedDirector] convertToGL: location];
 		// Get the tile data for the tile at touched position
@@ -384,7 +360,7 @@ extern int level;
     contextMenuBack = [CCSprite spriteWithFile:@"popup_bg.png"];
     contextMenuBack.scaleX=1.3;
     contextMenuBack.scaleY=1;
-    [_mainGame._hud addChild:contextMenuBack z:19];
+    [self addChild:contextMenuBack z:19];
     // 3 - Create the menu option labels
     
     //ADD IN A JOIN OTHER UNIT OPTION
@@ -417,7 +393,7 @@ extern int level;
     }
     [unitActionsMenu addChild:cancelBtn];
     
-    [_mainGame._hud addChild:unitActionsMenu z:19];
+    [self addChild:unitActionsMenu z:19];
     [unitActionsMenu alignItemsVerticallyWithPadding:5];
     
     if (unit.mySprite.position.x > wins.width/2) {
@@ -551,8 +527,7 @@ extern int level;
         wins = [[CCDirector sharedDirector] winSize];
         // Create the menu background
         contextMenuBack = [CCSprite spriteWithFile:@"popup_bg.png"];
-        [_mainGame._hud addChild:contextMenuBack z:19];
-        
+        [self addChild:contextMenuBack z:19];
         contextMenuBack.scaleX=1.5;
         contextMenuBack.scaleY=2;
         // Create the menu option labels
@@ -579,8 +554,7 @@ extern int level;
         // Add the Cancel button
         [buildingActionsMenu addChild:cancelBtn];
         // Add the menu to the layer
-        [_mainGame._hud addChild:buildingActionsMenu z:19];
-        
+        [self addChild:buildingActionsMenu z:19];
         // Position menu
         [buildingActionsMenu alignItemsVerticallyWithPadding:5];
         if (building.mySprite.position.x > wins.width/2) {
@@ -631,7 +605,7 @@ extern int level;
     // Create a black layer
     ccColor4B c = {0,0,0,0};
     CCLayerColor *layer = [CCLayerColor layerWithColor:c];
-    [_mainGame._hud addChild:layer z:20];
+    [self addChild:layer z:20];
     // Add a label showing the player turn to the black layer
     CCLabelBMFont * turnLbl = [CCLabelBMFont labelWithString:[NSString stringWithFormat:@"Player %d's turn",_mainGame.playerTurn] fntFile:@"Font_silver_size17.fnt"];
     [layer addChild:turnLbl];
@@ -844,14 +818,58 @@ extern int level;
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:2 scene:[MainMenuLayer scene]]];
 }
 
+
 #pragma mark Map scrolling
--(CCPanZoomController *)getController {
-    return _controller;
+- (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+    //if () menu/other touch events are not active{
+    //}
+    //finds the difference in the original map and the scaled map
+    //int differenceX = mapWidth - (mapWidth*mapScale);
+    //int differenceY = mapHeight - (mapHeight*mapScale);
+    
+    // This method is passed an NSSet of touches called (of course) "touches"
+    // "allObjects" returns an NSArray of all the objects in the set
+    NSArray *touchArray = [touches allObjects];
+    
+    if ([touchArray count] ==1){
+        
+        UITouch * fingerOne = [touchArray objectAtIndex:0];
+        CGPoint newTouchLocation = [fingerOne locationInView:[fingerOne view]];
+        newTouchLocation = [[CCDirector sharedDirector] convertToGL:newTouchLocation];
+        CGPoint oldTouchLocation = [fingerOne previousLocationInView:fingerOne.view];
+        oldTouchLocation = [[CCDirector sharedDirector] convertToGL:oldTouchLocation];
+        
+        //get the difference in the finger touches when the player was dragging
+        CGPoint difference = ccpSub(newTouchLocation, oldTouchLocation);
+        
+        //adds this on to the layers current position, effectively moving it
+        CGPoint newPosition = ccpAdd(levelMap.position, difference);
+        CGPoint bottomLeft = newPosition;
+        
+        /*//check to see if the map edges of the map are showing in the screen, if so bringing them back on the view so no black space can be seen
+         if (bottomLeft.x - differenceX/2 > 0 - (mapWidth * (1-mapScale)) + (1-mapScale)*33) {
+         bottomLeft.x = differenceX/2- (mapWidth * (1-mapScale))+(1-mapScale)*33;
+         }
+         else if (bottomLeft.y - differenceY/2 > 0 -(mapHeight * (1-mapScale))) {
+         bottomLeft.y = differenceY/2-(mapHeight * (1-mapScale));
+         
+         }
+         else if (bottomLeft.x + mapWidth*mapScale +differenceX/2 < 480+ (1-mapScale)*33) {
+         bottomLeft.x = -differenceX/2 - mapWidth*mapScale + 480 + (1-mapScale)*33;
+         
+         }
+         else if (bottomLeft.y + mapHeight*mapScale +differenceY/2 < 320) {
+         bottomLeft.y =  -differenceY/2 - mapHeight*mapScale + 320;
+         
+         }*/
+        //wins = [[CCDirector sharedDirector] winSize];
+        self.position = bottomLeft;
+        //NSLog(@"%s", bottomLeft);
+    }
 }
 
--(void) setXOffset:(int)xAxisOffset setYOffset:(int)yAxisOffset{
-    self.xOffset = xAxisOffset;
-    self.yOffset = yAxisOffset;
+- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
 }
 
 @end

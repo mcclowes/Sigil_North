@@ -155,14 +155,11 @@ extern int player2;
     [self unMarkPossibleMovement];
     [self unMarkPossibleAttack];
     [self unMarkPossibleJoin];
-    [theGame.getController enableWithTouchPriority:3 swallowsTouches:YES];
 }
 
 #pragma mark Unit Menu Handling
 // Carry out specified action for this unit
 -(void)markPossibleAction:(int)action {
-    [theGame.getController disable];
-    
     // Get the tile where the unit is standing
     TileData *startTileData = [theGame getTileData:[theGame tileCoordForPosition:mySprite.position]];
     [spOpenSteps addObject:startTileData];

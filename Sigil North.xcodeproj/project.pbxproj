@@ -25,7 +25,6 @@
 		C4191AB618E3A75900EFD915 /* menuMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C4191AB518E3A75900EFD915 /* menuMusic.mp3 */; };
 		C41FDA4818E9CF6C00457AAD /* Ruins_P5-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C41FDA4718E9CF6C00457AAD /* Ruins_P5-hd.png */; };
 		C41FDA4A18E9DB9600457AAD /* Barracks_P5-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C41FDA4918E9DB9600457AAD /* Barracks_P5-hd.png */; };
-		C43B810C18FBE2580092F5C9 /* CCPanZoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43B810B18FBE2580092F5C9 /* CCPanZoomController.m */; };
 		C4527D6318E8A15A0028DF04 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C4527D6218E8A15A0028DF04 /* GameLayer.m */; };
 		C460FDD118E1CEA600361182 /* heal_1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C460FDC918E1CEA600361182 /* heal_1-hd.png */; };
 		C460FDD218E1CEA600361182 /* heal_2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C460FDCA18E1CEA600361182 /* heal_2-hd.png */; };
@@ -408,8 +407,6 @@
 		C4191AB518E3A75900EFD915 /* menuMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = menuMusic.mp3; sourceTree = "<group>"; };
 		C41FDA4718E9CF6C00457AAD /* Ruins_P5-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Ruins_P5-hd.png"; path = "Assets/Buildings/Ruins_P5-hd.png"; sourceTree = "<group>"; };
 		C41FDA4918E9DB9600457AAD /* Barracks_P5-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Barracks_P5-hd.png"; path = "Assets/Buildings/Barracks_P5-hd.png"; sourceTree = "<group>"; };
-		C43B810A18FBE2580092F5C9 /* CCPanZoomController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPanZoomController.h; sourceTree = "<group>"; };
-		C43B810B18FBE2580092F5C9 /* CCPanZoomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPanZoomController.m; sourceTree = "<group>"; };
 		C4527D6118E8A15A0028DF04 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
 		C4527D6218E8A15A0028DF04 /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLayer.m; sourceTree = "<group>"; };
 		C460FDC918E1CEA600361182 /* heal_1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heal_1-hd.png"; sourceTree = "<group>"; };
@@ -1493,8 +1490,6 @@
 		C4CE25FE188D664D00BE82B3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C43B810A18FBE2580092F5C9 /* CCPanZoomController.h */,
-				C43B810B18FBE2580092F5C9 /* CCPanZoomController.m */,
 				C4CE25FF188D664D00BE82B3 /* Prefix.pch */,
 				C4CE2600188D664D00BE82B3 /* main.m */,
 			);
@@ -1860,7 +1855,7 @@
 		C4CE2452188D664B00BE82B3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "M F J C Clowes";
 			};
 			buildConfigurationList = C4CE2455188D664B00BE82B3 /* Build configuration list for PBXProject "Sigil North" */;
@@ -2262,7 +2257,6 @@
 				C4CE25CA188D664D00BE82B3 /* SimpleAudioEngine.m in Sources */,
 				C4CE257C188D664C00BE82B3 /* CCTouchDispatcher.m in Sources */,
 				C4CE24FF188D664C00BE82B3 /* CCNode.m in Sources */,
-				C43B810C18FBE2580092F5C9 /* CCPanZoomController.m in Sources */,
 				C4CE27A3188D67D700BE82B3 /* About.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2278,12 +2272,9 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
@@ -2312,12 +2303,9 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
 					"NS_BLOCK_ASSERTIONS=1",
